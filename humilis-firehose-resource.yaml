@@ -1,0 +1,9 @@
+---
+humilis-firehose-resource:
+    description:
+        A wrapper environment for testing the firehose-resource layer
+    layers:
+        - {layer: firehose-custom-resource}
+        # A dummy layer that creates a Firehose stream to test the custom
+        # resource we created in the previous layer.
+        - {layer: firehose}
