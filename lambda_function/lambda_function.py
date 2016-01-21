@@ -82,7 +82,7 @@ def _wait_for_state(resource_id, state):
 def create_stream(event, context):
     """Creates a Firehose delivery stream gateway."""
     try:
-        name = event['ResourceProperties']['Name']
+        name = event['ResourceProperties']['DeliveryStreamName']
         s3config = event['ResourceProperties']['S3DestinationConfiguration']
         resp = firehose_client.create_delivery_stream(
             DeliveryStreamName=name,
