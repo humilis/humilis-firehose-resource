@@ -11,7 +11,7 @@ from botocore.exceptions import ClientError
 
 SUCCESS = "SUCCESS"
 FAILED = "FAILED"
-FINAL_STATES = ['ACTIVE', 'FAILED']
+FINAL_STATES = ['ACTIVE']
 TIMEOUT = 4  # In minutes
 
 
@@ -59,7 +59,8 @@ def _is_in_state(resource_id, states):
     except ClientError:
         return
 
-    status = resp['DeliveryStreamStatus']
+    print(resp)
+    status = resp['DeliveryStreamDescription']['DeliveryStreamStatus']
     if status in states:
         return status
 
