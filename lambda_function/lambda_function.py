@@ -96,6 +96,7 @@ def create_stream(event, context):
     except:
         error = sys.exc_info()[0]
         response_data = {"Error": "create resource failed: {}".format(error)}
+        print(response_data)
         return send(event, context, FAILED, response_data=response_data)
         raise
 
@@ -115,6 +116,7 @@ def delete_stream(event, context):
     except:
         error = sys.exc_info()[0]
         response_data = {"Error": "delete stream failed: {}".format(error)}
+        print(response_data)
         # We send a SUCCESS message to prevent getting a zomby stack that we
         # can't delete in any way. A hack that will do for now...
         return send(event, context, SUCCESS, response_data=response_data)
