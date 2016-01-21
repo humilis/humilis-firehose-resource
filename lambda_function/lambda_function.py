@@ -122,9 +122,7 @@ def delete_stream(event, context):
             msg += "\n{}\n".format(err)
         response_data = {"Error": "delete resource failed: {}".format(msg)}
         print(response_data)
-        # We send a SUCCESS message to prevent getting a zomby stack that we
-        # can't delete in any way. A hack that will do for now...
-        return send(event, context, SUCCESS, response_data=response_data)
+        return send(event, context, FAILED, response_data=response_data)
 
 
 # To-do: an update_stream method
