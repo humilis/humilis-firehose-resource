@@ -39,13 +39,11 @@ resources:
         ServiceToken: {{custom_resource_function_arn}}
         DeliveryStreamName: {{stream_name}}
         S3DestinationConfiguration:
-          RoleArn:
+          RoleARN:
             "Fn::GetAtt":
               - StreamRole
               - Arn
-          BucketArn:
+          BucketARN:
             "Fn::Join":
               - ""
               - ["arn:aws:s3:::", {Ref: Bucket}]
-          BufferingHints:
-            IntervalInSeconds: {{s3config.buffer_interval}}

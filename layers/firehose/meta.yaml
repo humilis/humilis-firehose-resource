@@ -8,12 +8,6 @@ meta:
                 The name of the stream
             value: 
                 dummy_stream
-        s3config:
-            description:
-                The configuration for the destination in Amazon S3
-            value:
-                bucket_name: innovativetravel-firehose
-                buffer_interval: 5
         custom_resource_function_arn:
             description:
                 The ARN of the Lambda function that backs the custom Firehose resource

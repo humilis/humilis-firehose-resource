@@ -94,8 +94,10 @@ def create_stream(event, context):
         return send(event, context, SUCCESS, physical_resource_id=name)
 
     except:
-        error = sys.exc_info()[0]
-        response_data = {"Error": "create resource failed: {}".format(error)}
+        msg = ""
+        for err in sys.exc_info():
+            msg += "\n{}\n".format(err)
+        response_data = {"Error": "create resource failed: {}".format(msg)}
         print(response_data)
         return send(event, context, FAILED, response_data=response_data)
         raise
@@ -114,8 +116,10 @@ def delete_stream(event, context):
         time.sleep(2)
         return send(event, context, SUCCESS)
     except:
-        error = sys.exc_info()[0]
-        response_data = {"Error": "delete stream failed: {}".format(error)}
+        msg = ""
+        for err in sys.exc_info():
+            msg += "\n{}\n".format(err)
+        response_data = {"Error": "delete resource failed: {}".format(msg)}
         print(response_data)
         # We send a SUCCESS message to prevent getting a zomby stack that we
         # can't delete in any way. A hack that will do for now...
