@@ -15,5 +15,5 @@ meta:
                 ref:
                     parser: output
                     parameters:
-                        layer_name: firehose-resource
+                        layer_name: firehose-rsc
                         output_name: CustomResourceFunctionArn
