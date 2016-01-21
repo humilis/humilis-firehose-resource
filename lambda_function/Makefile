@@ -4,10 +4,10 @@
 
 # install all needed for development
 develop: .env
-	.env/bin/pip install -r requirements-dev.txt -e . tox
+	.env/bin/pip install -r requirements-dev.txt tox
 
 test: develop
-	pytest tests/
+	.env/bin/py.test
 
 # clean the development envrironment
 clean:
