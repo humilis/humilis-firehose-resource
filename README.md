@@ -10,37 +10,39 @@ vanilla CF template.
 [firehose]: http://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html
 
 
-# Requirements
+## Requirements
 
 You need to install and configure [humilis][humilis].
 
 
-# Development
+## Development
 
 Assuming you have [virtualenv][venv] installed:
 
 [venv]: https://virtualenv.readthedocs.org/en/latest/
 
 ```
-# Go to the directory that contains the Lambda function code
-cd lambda_function
 make develop
-
-. .env/bin/activate
 ```
 
 
-# Testing
+## Testing
 
-To test suite just run `py.test` from directory `lambda_function`. You can test
-the deployment of the Lambda function backing the CF custom resource with:
+To run the local test suite:
+
+```
+make test
+```
+
+You can test the deployment of the Lambda function backing the CF custom
+resource with:
 
 ```bash
 make create
 ```
 
 The command above will also create an additional `firehose` layer that uses the
-custom CF resource provided by the `firehose-resource` layer to deploy a 
+custom CF resource provided by the `firehose-resource` layer to deploy a
 Firehose delivery stream.
 
 To delete the whole CF deployment:
@@ -50,8 +52,13 @@ make delete
 ```
 
 
-# More information
+## More information
 
 See [humilis][humilis] documentation.
 
 [humilis]: https://github.com/InnovativeTravel/humilis/blob/master/README.md
+
+
+## Who do I ask?
+
+Ask [German](mailto:german@innovativetravel.eu).
