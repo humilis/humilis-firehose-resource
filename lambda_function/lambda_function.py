@@ -1,9 +1,11 @@
 from __future__ import print_function
 
 import json
+import re
 import sys
 import time
 import urllib2
+import uuid
 
 import boto3
 from botocore.exceptions import ClientError
@@ -80,19 +82,32 @@ def _wait_for_state(resource_id, state):
             return False
 
 
+def _get_resource_id(event):
+    """Generates the physical resource id."""
+    stack_arn = event['StackId']
+    stack_name = re.match('arn:aws:cloudformation:[^.]+:\d+:stack/([^/]+)/.+',
+                          stack_arn).group(1)
+    # Use the same naming convention used by CF when creating other types
+    # of resources. Maximum length is 64 chars.
+    return "{stack_name}-{name}-{random}".format(
+        stack_name=stack_name,
+        name=event['LogicalResourceId'],
+        random=str(uuid.uuid4()).replace('-', '')[:12].upper())[:64]
+
+
 def create_stream(event, context):
     """Creates a Firehose delivery stream gateway."""
     try:
-        name = event['ResourceProperties']['DeliveryStreamName']
         s3config = event['ResourceProperties']['S3DestinationConfiguration']
+        resource_id = _get_resource_id(event)
         resp = firehose_client.create_delivery_stream(
-            DeliveryStreamName=name,
+            DeliveryStreamName=resource_id,
             S3DestinationConfiguration=s3config)
         print("Service response: {}".format(resp))
         print("Waiting for resource to be deployed ...")
-        _wait_for_state(name, FINAL_STATES)
+        _wait_for_state(resource_id, FINAL_STATES)
         time.sleep(2)
-        return send(event, context, SUCCESS, physical_resource_id=name)
+        send(event, context, SUCCESS, physical_resource_id=resource_id)
 
     except:
         msg = ""
@@ -140,4 +155,4 @@ def lambda_handler(event, context):
     print("Received event: {}".format(event))
     print("Received context: {}".format(context))
     handler = HANDLERS.get(event['RequestType'])
-    handler(event, context)
+    return handler(event, context)
