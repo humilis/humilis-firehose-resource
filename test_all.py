@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-
 import uuid
 from mock import Mock
 
 import pytest
-import lambda_function
+from lambda_function import lambda_function
 
 
 @pytest.fixture(scope='session')
