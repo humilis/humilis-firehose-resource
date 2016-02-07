@@ -107,7 +107,11 @@ def create_stream(event, context):
         print("Waiting for resource to be deployed ...")
         _wait_for_state(resource_id, FINAL_STATES)
         time.sleep(2)
-        send(event, context, SUCCESS, physical_resource_id=resource_id)
+        response_data = {"Arn": firehose_client.describe_delivery_stream(
+            DeliveryStreamName=resource_id)['DeliveryStreamDescription'][
+                'DeliveryStreamARN']}
+        send(event, context, SUCCESS, physical_resource_id=resource_id,
+             response_data=response_data)
 
     except:
         msg = ""
