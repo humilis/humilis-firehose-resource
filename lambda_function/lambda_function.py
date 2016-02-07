@@ -98,7 +98,11 @@ def _get_resource_id(event):
 def create_stream(event, context):
     """Creates a Firehose delivery stream gateway."""
     try:
-        s3config = event['ResourceProperties']['S3DestinationConfiguration']
+        s3config = event["ResourceProperties"]["S3DestinationConfiguration"]
+        if "BufferingHints" in s3config:
+            # Must be of type int
+            s3config['BufferingHints'] = {
+                k: int(v) for k, v in s3config['BufferingHints'].items()}
         resource_id = _get_resource_id(event)
         resp = firehose_client.create_delivery_stream(
             DeliveryStreamName=resource_id,
