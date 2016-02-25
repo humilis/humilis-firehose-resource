@@ -85,14 +85,17 @@ def _wait_for_state(resource_id, state):
 def _get_resource_id(event):
     """Generates the physical resource id."""
     stack_arn = event['StackId']
+    print("Getting resource ID for stream in stack '{}'".format(stack_arn))
     stack_name = re.match('arn:aws:cloudformation:[^.]+:\d+:stack/([^/]+)/.+',
                           stack_arn).group(1)
     # Use the same naming convention used by CF when creating other types
     # of resources. Maximum length is 64 chars.
-    return "{stack_name}-{name}-{random}".format(
+    resource_id = "{stack_name}-{name}-{random}".format(
         stack_name=stack_name,
         name=event['LogicalResourceId'],
         random=str(uuid.uuid4()).replace('-', '')[:12].upper())[:64]
+    print("Produced resource ID '{}'".format(resource_id))
+    return resource_id
 
 
 def create_stream(event, context):
@@ -109,7 +112,7 @@ def create_stream(event, context):
         rs_config = rscprops.get("RedshiftDestinationConfiguration")
         if rs_config:
             print("Requesting delivery stream to S3 and Redshift")
-            jdbc_url = rs_config["RedshiftJDBCURL"]
+            jdbc_url = rs_config["ClusterJDBCURL"]
             print("Redshift JDBC endpoint: {}".format(jdbc_url))
             rs_config["S3Configuration"] = s3config
             rs_config["RoleARN"] = s3config["RoleARN"]

@@ -30,7 +30,7 @@ meta:
                     parameters:
                         service: "test:firehose-rsc:redshift"
                         key: "password"
-        redshift_jdbc_url:
+        cluster_jdbc_url:
             description:
                 The JDBD URL for the Redshift database
             value:
