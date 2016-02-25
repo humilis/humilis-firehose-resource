@@ -109,6 +109,7 @@ def create_stream(event, context):
         rs_config = rscprops.get("RedshiftDestinationConfiguration")
         if rs_config:
             rs_config["S3Configuration"] = s3config
+            rs_config["RoleARN"] = s3config["RoleARN"]
             resp = firehose_client.create_delivery_stream(
                 DeliveryStreamName=resource_id,
                 RedshiftDestinationConfiguration=rs_config)

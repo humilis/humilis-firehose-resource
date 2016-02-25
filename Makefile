@@ -1,6 +1,11 @@
+HUMILIS := .env/bin/humilis
+PYTHON := .env/bin/python
+STAGE := DEV
+HUMILIS_ENV := firehose-rsc
+
 # create virtual environment
 .env:
-	virtualenv .env -p python2.7
+	virtualenv .env -p python3
 
 # install dev dependencies, create layers directory
 develop: .env
@@ -19,12 +24,12 @@ clean:
 	rm layers/firehose-rsc
 
 create:
-	humilis --profile test create --stage TEST humilisenv.yaml
+	$(HUMILIS) create --stage $(STAGE) $(HUMILIS_ENV).yaml
 
 
 update:
-	humilis --profile test update --stage TEST humilisenv.yaml
+	$(HUMILIS) update --stage $(STAGE) $(HUMILIS_ENV).yaml
 
 
 delete:
-	humilis --profile test delete --stage TEST humilisenv.yaml
+	$(HUMILIS) delete --stage $(STAGE) $(HUMILIS_ENV).yaml
