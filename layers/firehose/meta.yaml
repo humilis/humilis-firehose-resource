@@ -12,3 +12,30 @@ meta:
                     parameters:
                         layer_name: firehose-rsc
                         output_name: CustomResourceFunctionArn
+        redshift_username:
+            description:
+                The username for the Redshift database
+            value:
+                ref:
+                    parser: secret
+                    parameters:
+                        service: "test:firehose-rsc:redshift"
+                        key: "username"
+        redshift_password:
+            description:
+                The password for the Redshift database
+            value:
+                ref:
+                    parser: secret
+                    parameters:
+                        service: "test:firehose-rsc:redshift"
+                        key: "password"
+        redshift_jdbc_url:
+            description:
+                The JDBD URL for the Redshift database
+            value:
+                ref:
+                    parser: secret
+                    parameters:
+                        service: "test:firehose-rsc:redshift"
+                        key: "jdbc_url"

@@ -108,12 +108,16 @@ def create_stream(event, context):
 
         rs_config = rscprops.get("RedshiftDestinationConfiguration")
         if rs_config:
+            print("Requesting delivery stream to S3 and Redshift")
+            jdbc_url = rs_config["RedshiftJDBCURL"]
+            print("Redshift JDBC endpoint: {}".format(jdbc_url))
             rs_config["S3Configuration"] = s3config
             rs_config["RoleARN"] = s3config["RoleARN"]
             resp = firehose_client.create_delivery_stream(
                 DeliveryStreamName=resource_id,
                 RedshiftDestinationConfiguration=rs_config)
         else:
+            print("Requesting delivery stream to S3")
             resp = firehose_client.create_delivery_stream(
                 DeliveryStreamName=resource_id,
                 S3DestinationConfiguration=s3config)
@@ -141,6 +145,7 @@ def delete_stream(event, context):
     """Deletes a Firehose delivery stream."""
     resource_id = event["PhysicalResourceId"]
     try:
+        print("Going to delete stream '{}'".format(resource_id))
         resp = firehose_client.delete_delivery_stream(
             DeliveryStreamName=resource_id)
         print("Firehose service response: {}".format(resp))
@@ -158,7 +163,8 @@ def delete_stream(event, context):
         if "ResourceNotFoundException" in msg:
             status = SUCCESS
         else:
-            status = FAILED
+            # Success no matter what. Otherwise zomby stack.
+            status = SUCCESS
         return send(event, context, status, response_data=response_data)
 
 
@@ -170,7 +176,7 @@ HANDLERS = {
 
 
 def lambda_handler(event, context):
-    print("Received event: {}".format(event))
-    print("Received context: {}".format(context))
+    # Do not print the received event to the logs: it contains the Redshift
+    # credentials.
     handler = HANDLERS.get(event['RequestType'])
     return handler(event, context)

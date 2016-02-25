@@ -49,3 +49,8 @@ resources:
           BufferingHints:
             SizeInMBs: 1
             IntervalInSeconds: 60
+        RedshiftDestinationConfiguration:
+          CopyCommand:
+            DataTableName: _test.{{_env.name}}_{{_layer.name}}
+          Username: {{redshift_username}}
+          Password: {{redshift_password}}
