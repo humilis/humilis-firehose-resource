@@ -1,35 +1,34 @@
 HUMILIS := .env/bin/humilis
-PYTHON := .env/bin/python
+PIP := .env/bin/pip
+TOX := .env/bin/tox
 STAGE := DEV
-HUMILIS_ENV := firehose-rsc
+HUMILIS_ENV := tests/firehose-rsc
 
-# create virtual environment
+# create virtual environment: Python2.7 as in AWS Lambda
 .env:
-	virtualenv .env -p python3
+	virtualenv .env -p python2.7
 
 # install dev dependencies, create layers directory
 develop: .env
 	.env/bin/pip install -r requirements-dev.txt
-	mkdir -p layers
-	rm -f layers/firehose-rsc
-	ln -fs ../ layers/firehose-rsc
 
-# run test suite
-test:
-	.env/bin/tox
+# run unit tests
+test: .env
+	$(PIP) install tox
+	$(TOX) -e unit
 
-# remove virtualenv and layers dir
+# remove .tox and .env dirs
 clean:
-	rm -rf .env
-	rm layers/firehose-rsc
+	rm -rf .env .tox
 
+# deploy the test environment
 create:
 	$(HUMILIS) create --stage $(STAGE) $(HUMILIS_ENV).yaml
 
-
+# update the test deployment
 update:
 	$(HUMILIS) update --stage $(STAGE) $(HUMILIS_ENV).yaml
 
-
+# delete the test deployment
 delete:
 	$(HUMILIS) delete --stage $(STAGE) $(HUMILIS_ENV).yaml

@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 
+import inspect
+import os
+import sys
 import uuid
 from mock import Mock
 
+# Add the lambda directory to the python library search path
+lambda_dir = os.path.join(
+    os.path.dirname(inspect.getfile(inspect.currentframe())), '..', '..')
+sys.path.append(lambda_dir)
+
 import pytest
-from lambda_function import lambda_function
+from fhrsc.lambda_function import lambda_function
 
 
 @pytest.fixture(scope='session')
