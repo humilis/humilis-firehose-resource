@@ -17,9 +17,6 @@ FINAL_STATES = ['ACTIVE']
 TIMEOUT = 4  # In minutes
 
 
-firehose_client = boto3.client('firehose')
-
-
 def send(event, context, response_status, reason=None, response_data=None,
          physical_resource_id=None):
     response_data = response_data or {}
@@ -56,8 +53,8 @@ def send(event, context, response_status, reason=None, response_data=None,
 def _is_in_state(resource_id, states):
     """Returns true if the gateway is in any of the specified states."""
     try:
-        resp = firehose_client.describe_delivery_stream(
-            DeliveryStreamName=resource_id)
+        client = boto3.client('firehose')
+        resp = client.describe_delivery_stream(DeliveryStreamName=resource_id)
     except ClientError:
         return
 
@@ -110,25 +107,26 @@ def create_stream(event, context):
         resource_id = _get_resource_id(event)
 
         rs_config = rscprops.get("RedshiftDestinationConfiguration")
+        client = boto3.client("firehose")
         if rs_config:
             print("Requesting delivery stream to S3 and Redshift")
             jdbc_url = rs_config["ClusterJDBCURL"]
             print("Redshift JDBC endpoint: {}".format(jdbc_url))
             rs_config["S3Configuration"] = s3config
             rs_config["RoleARN"] = s3config["RoleARN"]
-            resp = firehose_client.create_delivery_stream(
+            resp = client.create_delivery_stream(
                 DeliveryStreamName=resource_id,
                 RedshiftDestinationConfiguration=rs_config)
         else:
             print("Requesting delivery stream to S3")
-            resp = firehose_client.create_delivery_stream(
+            resp = client.create_delivery_stream(
                 DeliveryStreamName=resource_id,
                 S3DestinationConfiguration=s3config)
         print("Service response: {}".format(resp))
         print("Waiting for resource to be deployed ...")
         _wait_for_state(resource_id, FINAL_STATES)
         time.sleep(2)
-        response_data = {"Arn": firehose_client.describe_delivery_stream(
+        response_data = {"Arn": client.describe_delivery_stream(
             DeliveryStreamName=resource_id)['DeliveryStreamDescription'][
                 'DeliveryStreamARN']}
         send(event, context, SUCCESS, physical_resource_id=resource_id,
@@ -149,8 +147,8 @@ def delete_stream(event, context):
     resource_id = event["PhysicalResourceId"]
     try:
         print("Going to delete stream '{}'".format(resource_id))
-        resp = firehose_client.delete_delivery_stream(
-            DeliveryStreamName=resource_id)
+        client = boto3.client("firehose")
+        resp = client.delete_delivery_stream(DeliveryStreamName=resource_id)
         print("Firehose service response: {}".format(resp))
         print("Waiting for resource {} to be deleted ...".format(resource_id))
         # This will raise a ClientError when the stream has been deleted
