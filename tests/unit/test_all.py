@@ -58,10 +58,11 @@ def context():
     return DummyContext()
 
 
-def test_create(create_event, context, monkeypatch):
+def test_create(create_event, context, boto3_client, monkeypatch):
     """Tests resource creation."""
     monkeypatch.setattr("urllib2.build_opener",
                         Mock(return_value=Mock()))
+    monkeypatch.setattr("boto3.client", boto3_client)
     # Don't sleep!
     monkeypatch.setattr("time.sleep", lambda t: None)
     lambda_function.lambda_handler(create_event, context)
