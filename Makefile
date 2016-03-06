@@ -6,7 +6,7 @@ HUMILIS_ENV := tests/integration/firehose-rsc
 
 # create virtual environment
 .env:
-	virtualenv .env -p python3.5
+	virtualenv .env -p python3
 
 # install dev dependencies, create layers directory
 develop: .env
