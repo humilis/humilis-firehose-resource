@@ -1,5 +1,8 @@
-Custom CF resource: Firehose delivery stream
-==========
+Firehose custom resource for Cloudformation
+===========================================
+
+[![Build Status](https://travis-ci.org/InnovativeTravel/humilis-firehose-resource.svg?branch=master)](https://travis-ci.org/InnovativeTravel/humilis-firehose-resource)
+
 
 This repository contains a [humilis][humilis] layer that deploys a 
 [lambda-backed custom CF resource][custom-resource]. You can use this custom 
