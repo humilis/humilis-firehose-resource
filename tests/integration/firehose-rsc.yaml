@@ -3,7 +3,8 @@ firehose-rsc:
     description:
         A wrapper environment for testing the firehose-resource layer
     layers:
-        - layer: firehose-rsc
+        - layer: fhrsc
+          layer_type: firehose-resource
         # A dummy layer that creates a Firehose stream to test the custom
         # resource we created in the previous layer.
         - layer: firehose

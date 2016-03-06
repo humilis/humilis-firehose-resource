@@ -10,7 +10,7 @@ meta:
                 ref:
                     parser: output
                     parameters:
-                        layer_name: firehose-rsc
+                        layer_name: fhrsc
                         output_name: CustomResourceFunctionArn
         redshift_username:
             description:

@@ -2,11 +2,11 @@ HUMILIS := .env/bin/humilis
 PIP := .env/bin/pip
 TOX := .env/bin/tox
 STAGE := DEV
-HUMILIS_ENV := tests/firehose-rsc
+HUMILIS_ENV := tests/integration/firehose-rsc
 
-# create virtual environment: Python2.7 as in AWS Lambda
+# create virtual environment
 .env:
-	virtualenv .env -p python2.7
+	virtualenv .env -p python3.5
 
 # install dev dependencies, create layers directory
 develop: .env

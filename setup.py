@@ -18,7 +18,7 @@ except(IOError, ImportError, RuntimeError):
 
 setup(
     name="humilis-firehose-resource",
-    version="0.0.1",
+    version=metadata.version,
     author=metadata.authors_string,
     author_email=metadata.emails[0],
     url=metadata.url,
@@ -31,8 +31,6 @@ setup(
         "Programming Language :: Python :: 3"],
     zip_safe=False,
     entry_points={
-        "console_scripts": [
-            "humilis=humilis.cli:main"],
         "humilis.layers": [
-            "firehose_resource=fhrsc.__init__"]}
+            "firehose-resource=fhrsc.__init__:get_layer_path"]}
 )
