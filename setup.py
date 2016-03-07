@@ -19,6 +19,7 @@ except(IOError, ImportError, RuntimeError):
 setup(
     name="humilis-firehose-resource",
     include_package_data=True,
+    packages=["humilis_fhrsc"],
     version=metadata.version,
     author=metadata.authors_string,
     author_email=metadata.emails[0],

@@ -3,7 +3,7 @@
 
 package = "fhrsc"
 project = "humilis-firehose-resource"
-version = '0.0.3'
+version = '0.0.4'
 description = ("A humilis plug-in that provides Firehose support to "
                "Cloudformation")
 authors = ["German Gomez-Herrero"]
