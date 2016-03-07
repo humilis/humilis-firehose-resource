@@ -4,7 +4,7 @@
 import os
 from setuptools import setup
 
-import fhrsc.metadata as metadata
+import humilis_fhrsc.metadata as metadata
 
 
 try:
