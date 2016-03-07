@@ -2,6 +2,7 @@ Firehose custom resource for Cloudformation
 ===========================================
 
 [![Build Status](https://travis-ci.org/InnovativeTravel/humilis-firehose-resource.svg?branch=master)](https://travis-ci.org/InnovativeTravel/humilis-firehose-resource)
+[![PyPI](https://img.shields.io/pypi/v/humilis-firehose-resource.svg?style=flat)](https://pypi.python.org/pypi/humilis-firehose-resource)
 
 
 This repository contains a [humilis][humilis] layer that deploys a
