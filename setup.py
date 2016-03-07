@@ -26,7 +26,7 @@ setup(
     description=metadata.description,
     long_description=long_description,
     install_requires=[
-        "humilis>=0.2.6"],
+        "humilis>=0.3.0"],
     classifiers=[
         "Programming Language :: Python :: 3"],
     zip_safe=False,
