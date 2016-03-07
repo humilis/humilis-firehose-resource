@@ -1,5 +1,6 @@
 HUMILIS := .env/bin/humilis
 PIP := .env/bin/pip
+PYTHON := .env/bin/python
 TOX := .env/bin/tox
 STAGE := DEV
 HUMILIS_ENV := tests/integration/firehose-rsc
