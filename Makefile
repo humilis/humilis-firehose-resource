@@ -22,13 +22,13 @@ clean:
 	rm -rf .env .tox
 
 # deploy the test environment
-create: .env
+create: develop
 	$(HUMILIS) create --stage $(STAGE) $(HUMILIS_ENV).yaml
 
 # update the test deployment
-update: .env
+update: develop
 	$(HUMILIS) update --stage $(STAGE) $(HUMILIS_ENV).yaml
 
 # delete the test deployment
-delete: .env
+delete: develop
 	$(HUMILIS) delete --stage $(STAGE) $(HUMILIS_ENV).yaml
