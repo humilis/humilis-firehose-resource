@@ -12,7 +12,7 @@ lambda_dir = os.path.join(
 sys.path.append(lambda_dir)
 
 import pytest
-from fhrsc.lambda_function import lambda_function
+from humilis_fhrsc.lambda_function import lambda_function
 
 
 @pytest.fixture(scope='session')

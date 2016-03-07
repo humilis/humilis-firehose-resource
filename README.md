@@ -4,7 +4,7 @@ Firehose custom resource for Cloudformation
 [![Build Status](https://travis-ci.org/InnovativeTravel/humilis-firehose-resource.svg?branch=master)](https://travis-ci.org/InnovativeTravel/humilis-firehose-resource)
 
 
-This repository contains a [humilis][humilis] layer that deploys a 
+This repository contains a [humilis][humilis] layer that deploys a
 [lambda-backed custom CF resource][custom-resource]. You can use this custom 
 resource to deploy [Firehose delivery streams][firehose] using humilis or a
 vanilla CF template.
@@ -13,9 +13,11 @@ vanilla CF template.
 [firehose]: http://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html
 
 
-## Requirements
+## Installation
 
-You need to install and configure [humilis][humilis].
+```
+pip install git+https://github.com/InnovativeTravel/humilis-firehose-resource
+```
 
 
 ## Development
@@ -26,6 +28,12 @@ Assuming you have [virtualenv][venv] installed:
 
 ```
 make develop
+```
+
+Configure humilis:
+
+```
+.env/bin/humilis configure --local
 ```
 
 
