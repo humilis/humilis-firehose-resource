@@ -6,7 +6,7 @@ Firehose custom resource for Cloudformation
 
 
 This repository contains a [humilis][humilis] layer that deploys a
-[lambda-backed custom CF resource][custom-resource]. You can use this custom 
+[lambda-backed custom CF resource][custom-resource]. You can use this custom
 resource to deploy [Firehose delivery streams][firehose] using humilis or a
 vanilla CF template.
 
