@@ -11,3 +11,5 @@ git+https://github.com/Innovativetravel/humilis
 # http://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html
 boto3==1.2.1
 
+# We also need to install this layer in order to test it
+.
