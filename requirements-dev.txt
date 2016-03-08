@@ -4,4 +4,7 @@ ipython
 ipdb
 pdbpp
 
+# We need to install the layer in order to deploy it
+.
+
 -r requirements-test.txt
