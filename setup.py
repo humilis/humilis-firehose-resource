@@ -17,7 +17,7 @@ except(IOError, ImportError, RuntimeError):
         long_description = metadata.description
 
 setup(
-    name="humilis-firehose-resource",
+    name=metadata.project,
     include_package_data=True,
     packages=["humilis_fhrsc"],
     version=metadata.version,
