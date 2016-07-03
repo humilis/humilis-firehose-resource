@@ -5,3 +5,6 @@ mock
 tox
 
 -e .
+
+# The dev version of humilis
+git+https://github.com/humilis/humilis
