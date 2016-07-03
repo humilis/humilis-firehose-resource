@@ -23,7 +23,8 @@ except(IOError, ImportError, RuntimeError):
 setup(
     name="humilis-firehose-resource",
     include_package_data=True,
-    packages=find_packages(include=["humilis_fhrsc"]),
+    packages=find_packages(include=["humilis_fhrsc",
+                                    "humilis_fhrsc.*"]),
     package_data={
         "": ["*.j2", "*.yaml"]},
     version=__version__,
