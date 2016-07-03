@@ -26,6 +26,10 @@ clean:
 create: develop
 	$(HUMILIS) create --stage $(STAGE) $(HUMILIS_ENV).yaml
 
+# configure humilis
+configure: develop
+	$(HUMILIS) configure --local
+
 # update the test deployment
 update: develop
 	$(HUMILIS) update --stage $(STAGE) $(HUMILIS_ENV).yaml

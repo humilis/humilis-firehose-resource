@@ -47,7 +47,7 @@ make develop
 Configure humilis:
 
 ```
-.env/bin/humilis configure --local
+make configure
 ```
 
 
