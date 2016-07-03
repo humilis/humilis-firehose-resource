@@ -4,12 +4,4 @@ pytest-cov
 mock
 tox
 
-# We need humilis for deployment (integration tests)
-git+https://github.com/Innovativetravel/humilis
-
-# We need to install the layer in order to deploy it and test it
-.
-
-# The specific version of boto3 available in the Lambda environment
-# http://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html
-boto3==1.2.1
+-e .

@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
+"""Firehose resource for AWS Cloudformation."""
 
 
-import inspect
-import os
-
-
-def get_layer_path():
-    return os.path.dirname(inspect.getfile(inspect.currentframe()))
+__version__ = "0.0.5"
+__author__ = "German Gomez-Herrero, FindHotel BV"

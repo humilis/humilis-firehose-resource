@@ -16,8 +16,16 @@ vanilla CF template.
 
 ## Installation
 
+From [Pypi][pypi]:
+
 ```
-pip install git+https://github.com/InnovativeTravel/humilis-firehose-resource
+pip install humilis-firehose-resource
+```
+
+To install the development version:
+
+```
+pip install git+https://github.com/humilis/humilis-firehose-resource
 ```
 
 
@@ -30,6 +38,9 @@ Assuming you have [virtualenv][venv] installed:
 ```
 make develop
 ```
+
+
+## Configuration
 
 Configure humilis:
 
@@ -71,6 +82,17 @@ See [humilis][humilis] documentation.
 [humilis]: https://github.com/InnovativeTravel/humilis/blob/master/README.md
 
 
-## Who do I ask?
+## Contact
 
-Ask [German](mailto:german@innovativetravel.eu).
+If you have questions, bug reports, suggestions, etc. please create an issue on
+the `GitHub project page <http://github.com/humilis/humilis-firehose-resource>`_.
+
+
+## License
+
+This software is licensed under the `MIT license <http://en.wikipedia.org/wiki/MIT_License>`_
+
+See `License file <https://github.com/humilis/humilis-firehose-resource/blob/master/LICENSE.txt>`_
+
+
+© 2016 German Gomez-Herrero, `FindHotel <http://company.findhotel.net>`_ and others.
