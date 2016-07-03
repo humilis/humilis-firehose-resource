@@ -81,20 +81,20 @@ make delete
 
 See [humilis][humilis] documentation.
 
-[humilis]: https://github.com/InnovativeTravel/humilis/blob/master/README.md
+[humilis]: https://github.com/humilis/humilis/blob/master/README.md
 
 
 ## Contact
 
 If you have questions, bug reports, suggestions, etc. please create an issue on
-the `GitHub project page <http://github.com/humilis/humilis-firehose-resource>`_.
+the [GitHub project page](http://github.com/humilis/humilis-firehose-resource).
 
 
 ## License
 
-This software is licensed under the `MIT license <http://en.wikipedia.org/wiki/MIT_License>`_
+This software is licensed under the [MIT license](http://en.wikipedia.org/wiki/MIT_License).
 
-See `License file <https://github.com/humilis/humilis-firehose-resource/blob/master/LICENSE.txt>`_
+See [License file](https://github.com/humilis/humilis-firehose-resource/blob/master/LICENSE.txt)
 
 
-© 2016 German Gomez-Herrero, `FindHotel <http://company.findhotel.net>`_ and others.
+© 2016 German Gomez-Herrero, [FindHotel](http://company.findhotel.net) and others.
