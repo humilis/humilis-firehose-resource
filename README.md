@@ -18,6 +18,8 @@ vanilla CF template.
 
 From [Pypi][pypi]:
 
+[pypi]: https://pypi.python.org/pypi
+
 ```
 pip install humilis-firehose-resource
 ```
